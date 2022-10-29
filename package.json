@@ -11,5 +11,11 @@
   "dependencies": {
     "node-wav": "^0.0.2",
     "xlsx": "^0.18.5"
-  }
+  },
+  "licenses" : [
+    {
+      "type": "CC-BY 4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/"
+    }
+  ]
 }
