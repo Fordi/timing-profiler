@@ -35,3 +35,19 @@ Once you've got node:
 ```bash
 npm i
 ```
+
+Example of use:
+
+```bash
+node . -v -i "${HOME}/Documents/Gate 5.wav" -o "${HOME}/Documents/Gate 5.xlsx"
+```
+
+```
+44100 Hz
+2 channels
+Analyzing channel 0
+RMS: 0.005507576114103784
+Threshold: 0.055075761141037835
+8 ticks found
+Writing /home/fordi/Documents/Gate 5.xlsx
+```
