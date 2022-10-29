@@ -9,7 +9,7 @@ Give it a `wav` file, and it will:
 * Report all sample locations matching that description it finds in a spreadsheet,
   along with formulae to help them be statistically meaningful.
 
-```bash
+```
 Usage: node . -i {input.wav} -o {output.xlsx} [-t {noiseThreshold}] [-w {rmsWindow}] [-v]
     -i {input.wav}      Input .wav file
     -o {output.xlsx}    Output .xls file
