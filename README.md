@@ -10,11 +10,12 @@ Give it a `wav` file, and it will:
   along with formulae to help them be statistically meaningful.
 
 ```
-Usage: node . -i {input.wav} -o {output.xlsx} [-t {noiseThreshold}] [-w {rmsWindow}] [-v]
+Usage: node . -i {input.wav} -o {output.xlsx} [-t {noiseThreshold}] [-w {rmsWindow}] [-c {channel}] [-v]
     -i {input.wav}      Input .wav file
     -o {output.xlsx}    Output .xls file
     -t {noiseThreshold} Noise threshold as multiple of whole-file RMS (default: 10)
     -w {rmsWindow}      Size of window for volume detection in ms (default: 1)
+    -c {channel}        Channel to use (default=0)
     -v                  Increase verbosity (up to twice)
 ```
 

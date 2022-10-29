@@ -7,11 +7,12 @@ export default function readArgs() {
       process.stderr.write(message + '\n');
     }
     process.stderr.write([
-      `Usage: node ${relative(process.cwd(), cmd) || '.'} -i {input.wav} -o {output.xlsx} [-t {noiseThreshold}] [-w {rmsWindow}] [-v]`,
+      `Usage: node ${relative(process.cwd(), cmd) || '.'} -i {input.wav} -o {output.xlsx} [-t {noiseThreshold}] [-w {rmsWindow}] [-c {channel}] [-v]`,
       `    -i {input.wav}      Input .wav file`,
       `    -o {output.xlsx}    Output .xls file`,
       `    -t {noiseThreshold} Noise threshold as multiple of whole-file RMS (default: 10)`,
       `    -w {rmsWindow}      Size of window for volume detection in ms (default: 1)`,
+      `    -c {channel}        Channel to use (default=0)`,
       `    -v                  Increase verbosity (up to twice)`
     ].join('\n') + '\n\n');
     process.exit(message ? -1 : 0);
@@ -20,6 +21,7 @@ export default function readArgs() {
     VERBOSE: 0,
     threshold: 10,
     window: 1,
+    channel: 0,
     log: (level, ...args) => {
       config.VERBOSE >= level && process.stderr.write(args.join(' ') + '\n', 'utf8');
     },
@@ -36,13 +38,16 @@ export default function readArgs() {
         config.outputFile = args[++i];
       break;
       case '-t':
-        config.threshold = Math.parseFloat(args[++i]) ?? 10;
+        config.threshold = parseFloat(args[++i]) ?? 10;
       break;
       case '-w':
-        config.window = Math.parseFloat(args[++i]) ?? 1;
+        config.window = parseFloat(args[++i]) ?? 1;
       break;
       case '-v':
         config.VERBOSE++;
+      break;
+      case '-c':
+        config.channel = parseInt(args[++i]) ?? 0;
       break;
       default: 
         usage(`Unrecognized argument: ${args[i]}`);
