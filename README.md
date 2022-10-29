@@ -17,3 +17,11 @@ Usage: node . -i {input.wav} -o {output.xlsx} [-t {noiseThreshold}] [-w {rmsWind
     -w {rmsWindow}      Size of window for volume detection in ms (default: 1)
     -v                  Increase verbosity (up to twice)
 ```
+
+Note: if you don't have node:
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+source ~/.nvm/nvm.sh
+nvm use
+```
