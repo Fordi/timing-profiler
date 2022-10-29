@@ -18,10 +18,20 @@ Usage: node . -i {input.wav} -o {output.xlsx} [-t {noiseThreshold}] [-w {rmsWind
     -v                  Increase verbosity (up to twice)
 ```
 
-Note: if you don't have node:
+# Initial setup
+
+This should work on OS-X, Windows and Linux.
+
+If you don't have node, here's how to install it quickly on any OS-X or Linux system:
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 source ~/.nvm/nvm.sh
 nvm use
+```
+
+Once you've got node:
+
+```bash
+npm i
 ```
