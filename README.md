@@ -46,9 +46,9 @@ node . -v -i "${HOME}/Documents/Gate 5.wav" -o "${HOME}/Documents/Gate 5.xlsx"
 ```
 44100 Hz
 2 channels
-Analyzing channel 0
-RMS: 0.005507576114103784
-Threshold: 0.055075761141037835
+Analyzing channel 0; 755202 samples, 17124.761904761905ms
+RMS: 0.005507570651153589
+Threshold: 0.05507570651153589
 8 ticks found
 Writing /home/fordi/Documents/Gate 5.xlsx
 ```
