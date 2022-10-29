@@ -3,28 +3,32 @@ import { readFile } from 'fs/promises';
 import getRms from './getRms.mjs';
 import writeBook from './writeBook.mjs';
 
-export default async function analyze({ log, inputFile, outputFile, threshold, window }) {
+export default async function analyze({ log, inputFile, outputFile, threshold, window, channel }) {
   const {
     sampleRate,
     channelData,
   } = wav.decode(await readFile(inputFile));
   
   const sampleWindow = Math.ceil(sampleRate * (window / 1000));
-  const rms = getRms(channelData[0]);
+  log(1, `${sampleRate} Hz`);
+  log(1, `${channelData.length} channels`);
+  const signal = channelData[channel];
+  log(1, `Analyzing channel ${channel}; ${signal.length} samples, ${1000 * signal.length / sampleRate}ms`);
+
+  const rms = getRms(signal);
   const rmsThreshold = threshold * rms;
+
+  log(1, `RMS: ${rms}`);
+  log(1, `Threshold: ${rmsThreshold}`);
   
   let mode = 'searching';
   let dir = 1;
   const stamps = [];
   
-  log(1, `${sampleRate} Hz`);
-  log(1, `${channelData.length} channels`);
-  log(1, 'Analyzing channel 0');
-  log(1, `RMS: ${rms}`);
-  log(1, `Threshold: ${rmsThreshold}`);
-  
-  for (let i = sampleWindow; i < channelData[0].length; i+=dir) {
-    const curRms = getRms(channelData[0], i - sampleWindow, i);
+
+  for (let i = sampleWindow; i < signal.length; i+=dir) {
+    
+    const curRms = getRms(signal, i - sampleWindow, i);
     let lastMode = mode;
     if (mode === 'searching') {
       if (curRms > rmsThreshold) {
@@ -35,7 +39,7 @@ export default async function analyze({ log, inputFile, outputFile, threshold, w
       }
     }
     if (mode === 'finding zero cross') {
-      if (Math.sign(channelData[0][i]) !== Math.sign(channelData[0][i - 1])) {
+      if (Math.sign(signal[i]) !== Math.sign(signal[i - 1])) {
         stamps.push(i);
         mode = 'settling';
         log(2, `${lastMode} -> ${mode} @ ${i * 1000 / sampleRate}ms`);
