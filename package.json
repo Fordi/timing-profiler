@@ -1,0 +1,15 @@
+{
+  "name": "timing-profiler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-wav": "^0.0.2",
+    "xlsx": "^0.18.5"
+  }
+}
